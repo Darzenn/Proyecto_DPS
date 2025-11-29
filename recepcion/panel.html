@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Recepción – Hotel Casanova</title>
+
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+
+<body>
+
+    <!-- ========================================================= -->
+    <!-- HEADER -->
+    <!-- ========================================================= -->
+    <header>
+        <div class="nav-container">
+            <div class="logo">
+                <span>CASANOVA</span> HOTEL
+            </div>
+
+            <nav>
+                <ul>
+                    <li><a href="../index.html">Inicio</a></li>
+                    <li><a href="login.html">Cerrar sesión</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ========================================================= -->
+    <!-- TÍTULO -->
+    <!-- ========================================================= -->
+    <section class="section">
+        <h1 class="section-titulo">Panel de Recepción</h1>
+        <p class="section-subtitulo">
+            Vista interna para que el recepcionista controle las habitaciones, los huéspedes y las reservas por horas.
+        </p>
+    </section>
+
+    <!-- ========================================================= -->
+    <!-- RESUMEN + TABLA -->
+    <!-- ========================================================= -->
+    <section class="section">
+        <div class="reserva-layout">
+            <!-- Resumen de ocupación -->
+            <div class="card">
+                <h3>Resumen de ocupación</h3>
+
+                <div class="resumen-row">
+                    <span>Habitaciones disponibles:</span>
+                    <span id="resumen-disponibles">0</span>
+                </div>
+                <div class="resumen-row">
+                    <span>Habitaciones ocupadas:</span>
+                    <span id="resumen-ocupadas">0</span>
+                </div>
+                <div class="resumen-row">
+                    <span>En limpieza / mantenimiento:</span>
+                    <span id="resumen-limpieza">0</span>
+                </div>
+
+                <p style="margin-top: 0.8rem; font-size: 0.8rem; color:#555;">
+                    <strong>Nota para la exposición:</strong><br>
+                    Esta información se basa en las reservas simuladas hechas desde la página
+                    <code>reservar.html</code> y guardadas en el navegador usando <code>localStorage</code>.
+                </p>
+            </div>
+
+            <!-- Tabla de habitaciones -->
+            <div class="card">
+                <h3>Estado de habitaciones</h3>
+                <p style="font-size: 0.85rem; color:#555; margin-bottom:0.6rem;">
+                    Aquí se muestra cada habitación, su estado actual y, si está ocupada,
+                    los datos del huésped y la hora estimada de salida.
+                </p>
+
+                <div style="overflow-x:auto;">
+                    <table style="width: 100%; border-collapse: collapse; font-size: 0.85rem;">
+                        <thead>
+                            <tr style="background:#f0f0f0;">
+                                <th style="text-align:left; padding:0.4rem;">N° Habitación</th>
+                                <th style="text-align:left; padding:0.4rem;">Tipo</th>
+                                <th style="text-align:left; padding:0.4rem;">Estado</th>
+                                <th style="text-align:left; padding:0.4rem;">Huésped</th>
+                                <th style="text-align:left; padding:0.4rem;">Ingreso</th>
+                                <th style="text-align:left; padding:0.4rem;">Salida</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tabla-recepcion">
+                            <!-- Filas generadas por JS (recepcion.js) -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <p id="estado-panel" class="estado-reserva" style="margin-top:0.8rem;"></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================================================= -->
+    <!-- FOOTER -->
+    <!-- ========================================================= -->
+    <footer>
+        © <span id="year"></span> Hotel Casanova – Proyecto Académico UTP
+    </footer>
+
+    <!-- JS GENERAL -->
+    <script src="../js/app.js"></script>
+    <!-- JS DEL PANEL -->
+    <script src="../js/recepcion.js"></script>
+</body>
+
+</html>

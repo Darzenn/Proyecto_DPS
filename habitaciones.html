@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Habitaciones – Hotel Casanova</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+
+    <!-- ========================================================= -->
+    <!-- HEADER -->
+    <!-- ========================================================= -->
+    <header>
+        <div class="nav-container">
+            <div class="logo">
+                <span>CASANOVA</span> HOTEL
+            </div>
+
+            <nav>
+                <ul>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a class="active" href="habitaciones.html">Habitaciones</a></li>
+                    <li><a href="reservar.html">Reservar</a></li>
+                    <li><a href="contacto.html">Contacto</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ========================================================= -->
+    <!-- TÍTULO PRINCIPAL -->
+    <!-- ========================================================= -->
+    <section class="section">
+        <h1 class="section-titulo">Habitaciones del Hotel Casanova</h1>
+        <p class="section-subtitulo">
+            Elige entre habitaciones clásicas, ejecutivas o temáticas.
+            Tenemos opciones para todos los gustos.
+        </p>
+    </section>
+
+    <!-- ========================================================= -->
+    <!-- GRID DE HABITACIONES -->
+    <!-- ========================================================= -->
+    <section class="section">
+        <div class="rooms-grid">
+
+            <!-- ========================================================= -->
+            <!-- HABITACIONES BÁSICAS -->
+            <!-- ========================================================= -->
+
+            <!-- Junior Suite -->
+            <div class="room-card">
+                <div class="room-img" style="background-image: url('img/habitaciones/junior.jpg');"></div>
+                <div class="room-content">
+                    <h3>Junior Suite</h3>
+                    <p>
+                        Jacuzzi, cama queen, Smart TV 55”, Netflix, luces LED y ventilador.
+                    </p>
+                    <p class="room-price">Desde S/ 85.00</p>
+
+                    <button class="btn btn-primario" onclick="location.href='reservar.html?tipo=junior'">
+                        Reservar
+                    </button>
+                </div>
+            </div>
+
+            <!-- Ejecutiva -->
+            <div class="room-card">
+                <div class="room-img" style="background-image: url('img/habitaciones/ejecutiva.jpg');"></div>
+                <div class="room-content">
+                    <h3>Ejecutiva</h3>
+                    <p>
+                        Cama queen, Smart TV 50”, frigobar, WiFi y luces decorativas.
+                    </p>
+                    <p class="room-price">Desde S/ 60.00</p>
+
+                    <button class="btn btn-primario" onclick="location.href='reservar.html?tipo=ejecutiva'">
+                        Reservar
+                    </button>
+                </div>
+            </div>
+
+            <!-- Matrimonial -->
+            <div class="room-card">
+                <div class="room-img" style="background-image: url('img/habitaciones/matrimonial.jpg');"></div>
+                <div class="room-content">
+                    <h3>Matrimonial</h3>
+                    <p>
+                        Cama queen, TV 50”, cable, luces LED y ambiente relajante.
+                    </p>
+                    <p class="room-price">Desde S/ 50.00</p>
+
+                    <button class="btn btn-primario" onclick="location.href='reservar.html?tipo=matrimonial'">
+                        Reservar
+                    </button>
+                </div>
+            </div>
+
+            <!-- Panorámica -->
+            <div class="room-card">
+                <div class="room-img" style="background-image: url('img/habitaciones/panoramica.jpg');"></div>
+                <div class="room-content">
+                    <h3>Panorámica</h3>
+                    <p>
+                        Vista a la calle, cama dos plazas, Smart TV 43” y decoración moderna.
+                    </p>
+                    <p class="room-price">Desde S/ 45.00</p>
+
+                    <button class="btn btn-primario" onclick="location.href='reservar.html?tipo=panoramica'">
+                        Reservar
+                    </button>
+                </div>
+            </div>
+
+            <!-- Clásica -->
+            <div class="room-card">
+                <div class="room-img" style="background-image: url('img/habitaciones/clasica.jpg');"></div>
+                <div class="room-content">
+                    <h3>Clásica</h3>
+                    <p>
+                        Cama dos plazas, TV 43”, WiFi y diseño tradicional.
+                    </p>
+                    <p class="room-price">Desde S/ 40.00</p>
+
+                    <button class="btn btn-primario" onclick="location.href='reservar.html?tipo=clasica'">
+                        Reservar
+                    </button>
+                </div>
+            </div>
+
+            <!-- Estándar -->
+            <div class="room-card">
+                <div class="room-img" style="background-image: url('img/habitaciones/estandar.jpg');"></div>
+                <div class="room-content">
+                    <h3>Estándar</h3>
+                    <p>
+                        Ideal para una estadía rápida. Cama dos plazas y TV 43”.
+                    </p>
+                    <p class="room-price">Desde S/ 35.00</p>
+
+                    <button class="btn btn-primario" onclick="location.href='reservar.html?tipo=estandar'">
+                        Reservar
+                    </button>
+                </div>
+            </div>
+
+            <!-- ========================================================= -->
+            <!-- HABITACIONES TEMÁTICAS -->
+            <!-- ========================================================= -->
+
+            <!-- Play Station Suite -->
+            <div class="room-card">
+                <div class="room-img" style="background-image: url('img/habitaciones/playstation.jpg');"></div>
+                <div class="room-content">
+                    <h3>Play Station Suite</h3>
+                    <p>
+                        PS5, TV 75”, sillón tántrico, luces LED y WiFi de alta velocidad.
+                    </p>
+                    <p class="room-price">Desde S/ 130.00</p>
+
+                    <button class="btn btn-primario" onclick="location.href='reservar.html?tipo=play'">
+                        Reservar
+                    </button>
+                </div>
+            </div>
+
+            <!-- Cinema Suite -->
+            <div class="room-card">
+                <div class="room-img" style="background-image: url('img/habitaciones/cinema.jpg');"></div>
+                <div class="room-content">
+                    <h3>Cinema Suite</h3>
+                    <p>
+                        Pantalla gigante 87”, sonido envolvente y ambiente cinematográfico.
+                    </p>
+                    <p class="room-price">Desde S/ 125.00</p>
+
+                    <button class="btn btn-primario" onclick="location.href='reservar.html?tipo=cinema'">
+                        Reservar
+                    </button>
+                </div>
+            </div>
+
+            <!-- Nintendo Suite -->
+            <div class="room-card">
+                <div class="room-img" style="background-image: url('img/habitaciones/nintendo.jpg');"></div>
+                <div class="room-content">
+                    <h3>Nintendo Suite</h3>
+                    <p>
+                        Nintendo Switch, TV 65”, WiFi, luces LED y sofá-cama.
+                    </p>
+                    <p class="room-price">Desde S/ 110.00</p>
+
+                    <button class="btn btn-primario" onclick="location.href='reservar.html?tipo=nintendo'">
+                        Reservar
+                    </button>
+                </div>
+            </div>
+
+            <!-- Infinity Suite -->
+            <div class="room-card">
+                <div class="room-img" style="background-image: url('img/habitaciones/infinity.jpg');"></div>
+                <div class="room-content">
+                    <h3>Infinity Suite</h3>
+                    <p>
+                        Sauna seco, jacuzzi, Alexa, TV 65”, luces inteligentes.
+                    </p>
+                    <p class="room-price">Desde S/ 160.00</p>
+
+                    <button class="btn btn-primario" onclick="location.href='reservar.html?tipo=infinity'">
+                        Reservar
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ========================================================= -->
+    <!-- FOOTER -->
+    <!-- ========================================================= -->
+    <footer>
+        © <span id="year"></span> Hotel Casanova – Proyecto Académico UTP
+    </footer>
+
+    <script src="js/app.js"></script>
+</body>
+
+</html>

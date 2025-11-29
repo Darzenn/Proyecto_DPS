@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reservar – Hotel Casanova</title>
+
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+
+    <!-- ========================================================= -->
+    <!-- HEADER -->
+    <!-- ========================================================= -->
+    <header>
+        <div class="nav-container">
+            <div class="logo">
+                <span>CASANOVA</span> HOTEL
+            </div>
+
+            <nav>
+                <ul>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="habitaciones.html">Habitaciones</a></li>
+                    <li><a class="active" href="reservar.html">Reservar</a></li>
+                    <li><a href="contacto.html">Contacto</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ========================================================= -->
+    <!-- TÍTULO -->
+    <!-- ========================================================= -->
+    <section class="section">
+        <h1 class="section-titulo">Reserva tu habitación</h1>
+        <p class="section-subtitulo">
+            Completa los datos para simular cómo se registraría tu reserva por horas
+            en el sistema del Hotel Casanova.
+        </p>
+    </section>
+
+    <!-- ========================================================= -->
+    <!-- FORMULARIO DE RESERVA + RESUMEN -->
+    <!-- ========================================================= -->
+    <section class="section">
+        <div class="reserva-layout">
+
+            <!-- ====== FORMULARIO ====== -->
+            <div class="card">
+                <h3>Datos del huésped</h3>
+
+                <form id="form-reserva">
+
+                    <!-- Nombre, correo, teléfono -->
+                    <div class="form-group">
+                        <label for="nombre">Nombre completo *</label>
+                        <input type="text" id="nombre" required>
+                    </div>
+
+                    <div class="form-inline">
+                        <div class="form-group">
+                            <label for="email">Correo electrónico *</label>
+                            <input type="email" id="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="telefono">Teléfono *</label>
+                            <input type="tel" id="telefono" required>
+                        </div>
+                    </div>
+
+                    <!-- Documento -->
+                    <div class="form-inline">
+                        <div class="form-group">
+                            <label for="docTipo">Tipo de documento *</label>
+                            <select id="docTipo" required>
+                                <option value="DNI">DNI</option>
+                                <option value="CE">Carné de Extranjería</option>
+                                <option value="PASAPORTE">Pasaporte</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="docNumero">Número de documento *</label>
+                            <input type="text" id="docNumero" required>
+                        </div>
+                    </div>
+
+                    <hr style="margin: 1rem 0;">
+
+                    <h3>Datos de la reserva</h3>
+
+                    <!-- Tipo de habitación -->
+                    <div class="form-group">
+                        <label for="tipoHabitacion">Tipo de habitación *</label>
+                        <select id="tipoHabitacion" required>
+                            <option value="">Selecciona una opción</option>
+                            <option value="Junior Suite">Junior Suite</option>
+                            <option value="Ejecutiva">Ejecutiva</option>
+                            <option value="Matrimonial">Matrimonial</option>
+                            <option value="Panorámica">Panorámica</option>
+                            <option value="Clásica">Clásica</option>
+                            <option value="Estándar">Estándar</option>
+                            <option value="Infinity Suite">Infinity Suite (Temática)</option>
+                            <option value="Golden Suite">Golden Suite (Temática)</option>
+                            <option value="Nova Suite">Nova Suite (Temática)</option>
+                            <option value="Play Station">Play Station Suite</option>
+                            <option value="Cinema Suite">Cinema Suite</option>
+                            <option value="Nintendo Suite">Nintendo Suite</option>
+                            <option value="Black Suite">Black Suite</option>
+                        </select>
+                        <small>Se utilizará para buscar la tarifa correcta por horas.</small>
+                    </div>
+
+                    <!-- Fecha y hora de entrada -->
+                    <div class="form-inline">
+                        <div class="form-group">
+                            <label for="fechaEntrada">Fecha de ingreso *</label>
+                            <input type="date" id="fechaEntrada" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="horaEntrada">Hora de ingreso *</label>
+                            <input type="time" id="horaEntrada" required>
+                            <small>Ejemplo: 14:00 (2:00 p. m.)</small>
+                        </div>
+                    </div>
+
+                    <!-- Duración -->
+                    <div class="form-group">
+                        <label for="duracion">Duración del turno *</label>
+                        <select id="duracion" required>
+                            <option value="">Selecciona la cantidad de horas</option>
+                            <option value="5">5 horas</option>
+                            <option value="6">6 horas</option>
+                            <option value="8">8 horas</option>
+                            <option value="12">12 horas</option>
+                        </select>
+                        <small>Según el tarifario: 5H, 6H, 8H o 12H.</small>
+                    </div>
+
+                    <!-- Método de pago -->
+                    <div class="form-group">
+                        <label for="metodoPago">Método de pago *</label>
+                        <select id="metodoPago" required>
+                            <option value="">Selecciona uno</option>
+                            <option value="YAPE">Yape</option>
+                            <option value="PLIN">Plin</option>
+                            <option value="TARJETA">Tarjeta</option>
+                            <option value="EFECTIVO">Efectivo (en recepción)</option>
+                        </select>
+                    </div>
+
+                    <!-- Código promocional -->
+                    <div class="form-group">
+                        <label for="codigoPromo">Código promocional (opcional)</label>
+                        <input type="text" id="codigoPromo" placeholder="Ejemplo: SANVALEN">
+                    </div>
+
+                    <!-- Observaciones -->
+                    <div class="form-group">
+                        <label for="observaciones">Observaciones</label>
+                        <textarea id="observaciones" rows="3"
+                            placeholder="Ejemplo: Llegaré después de las 10:00 p. m."></textarea>
+                    </div>
+
+                    <!-- Botón -->
+                    <div class="form-group" style="margin-top: 1.1rem;">
+                        <button type="submit" class="btn btn-primario" style="width: 100%;">
+                            Confirmar reserva (simulación)
+                        </button>
+                    </div>
+
+                    <p id="mensaje-reserva" class="estado-reserva"></p>
+                </form>
+            </div>
+
+            <!-- ====== RESUMEN ====== -->
+            <div class="card">
+                <h3>Resumen de la reserva</h3>
+                <p class="resumen">
+                    Aquí se muestra la simulación de cómo quedaría tu reserva en la base de datos
+                    <strong>hotel_casanova</strong>.
+                </p>
+
+                <div id="resumen-detalle" style="margin-top: 1rem;">
+                    <div class="resumen-row">
+                        <span>Cliente:</span>
+                        <span id="resumen-cliente">—</span>
+                    </div>
+                    <div class="resumen-row">
+                        <span>Documento:</span>
+                        <span id="resumen-doc">—</span>
+                    </div>
+                    <div class="resumen-row">
+                        <span>Correo:</span>
+                        <span id="resumen-email">—</span>
+                    </div>
+                    <div class="resumen-row">
+                        <span>Teléfono:</span>
+                        <span id="resumen-telefono">—</span>
+                    </div>
+
+                    <hr style="margin: 0.6rem 0;">
+
+                    <div class="resumen-row">
+                        <span>Tipo habitación:</span>
+                        <span id="resumen-habitacion">—</span>
+                    </div>
+                    <div class="resumen-row">
+                        <span>Ingreso:</span>
+                        <span id="resumen-ingreso">—</span>
+                    </div>
+                    <div class="resumen-row">
+                        <span>Salida (estimada):</span>
+                        <span id="resumen-salida">—</span>
+                    </div>
+                    <div class="resumen-row">
+                        <span>Duración:</span>
+                        <span id="resumen-duracion">—</span>
+                    </div>
+                    <div class="resumen-row">
+                        <span>Método de pago:</span>
+                        <span id="resumen-metodo">—</span>
+                    </div>
+                    <div class="resumen-row">
+                        <span>Código promo:</span>
+                        <span id="resumen-promo">—</span>
+                    </div>
+
+                    <div class="resumen-total">
+                        <div class="resumen-row">
+                            <span>Total estimado:</span>
+                            <span id="resumen-total">S/ 0.00</span>
+                        </div>
+                    </div>
+                </div>
+
+                <p class="estado-reserva" style="margin-top: 1.2rem; font-size: 0.8rem;">
+                    <strong>Nota para la exposición:</strong><br>
+                    Esta simulación representa la información que se enviaría al backend para
+                    registrar la reserva en las tablas <code>clientes</code>, <code>reservas</code>,
+                    <code>reserva_habitacion</code> y <code>tarifas_horas</code>.
+                </p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ========================================================= -->
+    <!-- FOOTER -->
+    <!-- ========================================================= -->
+    <footer>
+        © <span id="year"></span> Hotel Casanova – Proyecto Académico UTP
+    </footer>
+
+    <!-- JS GENERAL (AÑO, ETC.) -->
+    <script src="js/app.js"></script>
+    <!-- JS ESPECÍFICO DE RESERVAS POR HORAS -->
+    <script src="js/reservas.js"></script>
+</body>
+
+</html>
