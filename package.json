@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/Darzenn/Proyecto_DPS/issues"
   },
-  "homepage": "https://github.com/Darzenn/Proyecto_DPS#readme"
+  "homepage": "https://github.com/Darzenn/Proyecto_DPS#readme",
+  "dependencies": {
+    "mysql": "^2.18.1"
+  }
 }
