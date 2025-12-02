@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo Completo - Hotel Casanova</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <style>
+        .filter-bar {
+            background-color: #fff;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            padding: 20px 30px;
+            margin-top: -60px;
+            position: relative;
+            z-index: 10;
+        }
+        .badge-accesible { background-color: #20c997; color: white; }
+        .badge-piso { background-color: #6c757d; color: white; }
+        .card { transition: transform 0.3s; }
+        .card:hover { transform: translateY(-5px); }
+        
+        /* Estilos para los detalles ricos */
+        .accessibility-info {
+            background-color: #f0fdf4;
+            border-left: 4px solid #20c997;
+            font-size: 0.85rem;
+        }
+        .feature-list i { color: #ffc107; margin-right: 5px; width: 20px; text-align: center; }
+        .feature-list li { margin-bottom: 4px; }
+    </style>
+</head>
+<body class="bg-light">
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-black sticky-top border-bottom border-warning">
+        <div class="container">
+            <a class="navbar-brand fw-bold text-uppercase" href="/" style="letter-spacing: 2px;">🏨 HOTEL CASANOVA</a>
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a href="/" class="nav-link text-white"><i class="bi bi-arrow-left"></i> Volver al Inicio</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="bg-dark text-white text-center py-5" style="background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('/img/fondo-gamer.jpg'); background-size: cover; padding-bottom: 100px !important;">
+        <div class="container">
+            <h1 class="display-4 fw-bold text-warning">Encuentra tu Espacio</h1>
+            <p class="lead">Verifica disponibilidad y elige tu experiencia perfecta.</p>
+        </div>
+    </div>
+
+    <!-- BARRA DE BÚSQUEDA Y FILTROS -->
+    <div class="container mb-5">
+        <div class="row justify-content-center">
+            <div class="col-md-11">
+                <div class="filter-bar">
+                    <!-- FILA 1: FECHAS (Para calcular disponibilidad real) -->
+                    <div class="row g-3 align-items-end mb-4 border-bottom pb-4">
+                        <div class="col-md-4">
+                            <label class="form-label fw-bold">Llegada</label>
+                            <input type="date" id="searchCheckin" class="form-control">
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label fw-bold">Salida</label>
+                            <input type="date" id="searchCheckout" class="form-control">
+                        </div>
+                        <div class="col-md-4">
+                            <button id="btnConsultar" class="btn btn-warning w-100 fw-bold">
+                                <i class="bi bi-calendar-check"></i> CONSULTAR DISPONIBILIDAD
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- FILA 2: FILTROS TÉCNICOS (Piso / Accesibilidad) -->
+                    <div class="d-flex flex-wrap gap-3 align-items-center justify-content-center">
+                        <div class="d-flex align-items-center gap-2">
+                            <i class="bi bi-funnel-fill text-secondary"></i>
+                            <span class="fw-bold">Filtros:</span>
+                        </div>
+                        <select id="filtroPiso" class="form-select w-auto rounded-pill border-secondary bg-light">
+                            <option value="todos">🏢 Todos los Pisos</option>
+                            <option value="1">Piso 1 (Recepción)</option>
+                            <option value="2">Piso 2 (Gaming)</option>
+                            <option value="3">Piso 3 (Suites)</option>
+                            <option value="4">Piso 4 (Azotea)</option>
+                        </select>
+                        <div class="form-check form-switch ms-md-3">
+                            <input class="form-check-input" type="checkbox" id="filtroAccesible" style="cursor: pointer;">
+                            <label class="form-check-label" for="filtroAccesible">Solo Accesibles ♿</label>
+                        </div>
+                        <button id="btnReset" class="btn btn-link text-secondary text-decoration-none btn-sm">Limpiar Filtros</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- LISTA DE HABITACIONES -->
+    <div class="container py-4">
+        <div class="row row-cols-1 row-cols-md-3 g-4" id="gridHabitaciones">
+            
+            <!-- 1. MATRIMONIAL (Piso 1, Accesible) -->
+            <div class="col room-card" data-piso="1" data-accesible="true">
+                <div class="card h-100 shadow border-0">
+                    <img src="/img/room-matrimonial.jpg" class="card-img-top" style="height: 220px; object-fit: cover;">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between mb-2">
+                            <h5 class="fw-bold">Matrimonial Deluxe ❤️</h5>
+                            <span class="badge bg-dark fs-6">$140</span>
+                        </div>
+                        <div class="mb-3">
+                            <span class="badge badge-piso">Piso 1</span>
+                            <span class="badge badge-accesible"><i class="bi bi-person-wheelchair"></i> Accesible</span>
+                        </div>
+                        
+                        <h6 class="fw-bold text-muted small text-uppercase">Comodidades:</h6>
+                        <ul class="list-unstyled small feature-list mb-3">
+                            <li><i class="bi bi-heart-fill"></i> Cama Queen Size Premium</li>
+                            <li><i class="bi bi-tv"></i> Smart TV 55" con Netflix</li>
+                            <li><i class="bi bi-cup-hot"></i> Frigobar & Cafetera</li>
+                            <li><i class="bi bi-wifi"></i> WiFi Alta Velocidad</li>
+                        </ul>
+
+                        <!-- INFO ACCESIBILIDAD -->
+                        <div class="accessibility-info p-2 rounded mb-3">
+                            <strong class="text-success"><i class="bi bi-check-circle-fill"></i> Baño Adaptado:</strong>
+                            <ul class="list-unstyled mb-0 ps-1">
+                                <li>• Ducha Roll-in sin escalones</li>
+                                <li>• Barras de apoyo en inodoro</li>
+                                <li>• Puertas de 90cm de ancho</li>
+                            </ul>
+                        </div>
+
+                        <p class="text-success fw-bold small mb-0">✅ <span id="cant-matrimonial">--</span> disponibles</p>
+                    </div>
+                    <div class="card-footer bg-white border-0">
+                        <a href="/reservar?tipo=matrimonial" class="btn btn-outline-dark w-100 btn-reservar">Reservar</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2. FAMILIAR (Piso 1, Accesible) -->
+            <div class="col room-card" data-piso="1" data-accesible="true">
+                <div class="card h-100 shadow border-0">
+                    <img src="/img/room-familiar.jpg" class="card-img-top" style="height: 220px; object-fit: cover;">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between mb-2">
+                            <h5 class="fw-bold">Familiar Deluxe 👨‍👩‍👧‍👦</h5>
+                            <span class="badge bg-dark fs-6">$180</span>
+                        </div>
+                        <div class="mb-3">
+                            <span class="badge badge-piso">Piso 1</span>
+                            <span class="badge badge-accesible"><i class="bi bi-person-wheelchair"></i> Accesible</span>
+                        </div>
+
+                        <h6 class="fw-bold text-muted small text-uppercase">Espacio & Confort:</h6>
+                        <ul class="list-unstyled small feature-list mb-3">
+                            <li><i class="bi bi-layout-three-columns"></i> 2 Camas Dobles + Sofá Cama</li>
+                            <li><i class="bi bi-aspect-ratio"></i> 2 TVs Independientes</li>
+                            <li><i class="bi bi-egg-fried"></i> Kitchenette con Microondas</li>
+                            <li><i class="bi bi-table"></i> Comedor para 4 personas</li>
+                        </ul>
+                        
+                        <div class="accessibility-info p-2 rounded mb-3">
+                            <strong class="text-success"><i class="bi bi-check-circle-fill"></i> Acceso Total:</strong>
+                            <ul class="list-unstyled mb-0 ps-1">
+                                <li>• Entrada directa desde el lobby</li>
+                                <li>• Baño con radio de giro amplio</li>
+                            </ul>
+                        </div>
+
+                        <p class="text-success fw-bold small mb-0">✅ <span id="cant-familiar">--</span> disponibles</p>
+                    </div>
+                    <div class="card-footer bg-white border-0">
+                        <a href="/reservar?tipo=familiar" class="btn btn-outline-dark w-100 btn-reservar">Reservar</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3. SUITE CASANOVA (Piso 3, Accesible Ascensor) -->
+            <div class="col room-card" data-piso="3" data-accesible="true">
+                <div class="card h-100 shadow border-0">
+                    <img src="/img/room-suite.jpg" class="card-img-top" style="height: 220px; object-fit: cover;">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between mb-2">
+                            <h5 class="fw-bold">Suite Casanova 🥂</h5>
+                            <span class="badge bg-warning text-dark fs-6">$250</span>
+                        </div>
+                        <div class="mb-3">
+                            <span class="badge badge-piso">Piso 3</span>
+                            <span class="badge badge-accesible"><i class="bi bi-person-wheelchair"></i> Ascensor</span>
+                        </div>
+
+                        <h6 class="fw-bold text-muted small text-uppercase">Experiencia de Lujo:</h6>
+                        <ul class="list-unstyled small feature-list mb-3">
+                            <li><i class="bi bi-star-fill"></i> Cama King Size Presidencial</li>
+                            <li><i class="bi bi-water"></i> Jacuzzi Hidromasaje Privado</li>
+                            <li><i class="bi bi-bell"></i> Servicio a la Habitación 24/7</li>
+                            <li><i class="bi bi-soundwave"></i> Altavoz Inteligente Alexa</li>
+                        </ul>
+                        
+                        <div class="accessibility-info p-2 rounded mb-3">
+                            <strong class="text-success"><i class="bi bi-check-circle-fill"></i> Suite Inclusiva:</strong>
+                            <ul class="list-unstyled mb-0 ps-1">
+                                <li>• Acceso por ascensor panorámico</li>
+                                <li>• Botón SOS en baño y cama</li>
+                            </ul>
+                        </div>
+
+                        <p class="text-success fw-bold small mb-0">✅ <span id="cant-suite">--</span> disponibles</p>
+                    </div>
+                    <div class="card-footer bg-white border-0">
+                        <a href="/reservar?tipo=suite" class="btn btn-dark w-100 btn-reservar">Reservar Suite</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 4. CINEMA (Piso 2) -->
+            <div class="col room-card" data-piso="2" data-accesible="false">
+                <div class="card h-100 shadow border-0">
+                    <img src="/img/room-cinema.jpg" class="card-img-top" style="height: 220px; object-fit: cover;">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between mb-2">
+                            <h5 class="fw-bold">Suite Cinema 🎬</h5>
+                            <span class="badge bg-dark fs-6">$150</span>
+                        </div>
+                        <div class="mb-3">
+                            <span class="badge badge-piso">Piso 2</span>
+                        </div>
+
+                        <h6 class="fw-bold text-muted small text-uppercase">Tu Cine Privado:</h6>
+                        <ul class="list-unstyled small feature-list mb-3">
+                            <li><i class="bi bi-display"></i> TV QLED 75" 4K HDR</li>
+                            <li><i class="bi bi-speaker"></i> Barra de Sonido Dolby Atmos</li>
+                            <li><i class="bi bi-film"></i> Cuentas Netflix, Disney+, HBO</li>
+                            <li><i class="bi bi-bucket"></i> Máquina de Popcorn Gratis</li>
+                            <li><i class="bi bi-moon-stars"></i> Cortinas Blackout Total</li>
+                        </ul>
+
+                        <p class="text-success fw-bold small mb-0">✅ <span id="cant-cinema">--</span> disponibles</p>
+                    </div>
+                    <div class="card-footer bg-white border-0">
+                        <a href="/reservar?tipo=cinema" class="btn btn-outline-dark w-100 btn-reservar">Reservar</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 5. SWITCH (Piso 2) -->
+            <div class="col room-card" data-piso="2" data-accesible="false">
+                <div class="card h-100 shadow border-0">
+                    <img src="/img/room-switch.jpg" class="card-img-top" style="height: 220px; object-fit: cover;">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between mb-2">
+                            <h5 class="fw-bold">Room Switch 🎮</h5>
+                            <span class="badge bg-dark fs-6">$120</span>
+                        </div>
+                        <div class="mb-3">
+                            <span class="badge badge-piso">Piso 2</span>
+                        </div>
+
+                        <h6 class="fw-bold text-muted small text-uppercase">Multijugador Local:</h6>
+                        <ul class="list-unstyled small feature-list mb-3">
+                            <li><i class="bi bi-nintendo-switch"></i> Nintendo Switch Modelo OLED</li>
+                            <li><i class="bi bi-controller"></i> 4 Mandos Pro + Volantes</li>
+                            <li><i class="bi bi-disc"></i> Mario Kart 8, Smash Bros, FIFA</li>
+                            <li><i class="bi bi-people"></i> Pufs Gaming para amigos</li>
+                        </ul>
+
+                        <p class="text-success fw-bold small mb-0">✅ <span id="cant-switch">--</span> disponibles</p>
+                    </div>
+                    <div class="card-footer bg-white border-0"><a href="/reservar?tipo=switch" class="btn btn-outline-dark w-100 btn-reservar">Reservar</a></div>
+                </div>
+            </div>
+
+            <!-- 6. PS5 (Piso 3, Accesible) -->
+            <div class="col room-card" data-piso="3" data-accesible="true">
+                <div class="card h-100 shadow border-0">
+                    <img src="/img/room-ps5.jpg" class="card-img-top" style="height: 220px; object-fit: cover;">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between mb-2">
+                            <h5 class="fw-bold">Gamer Pro PS5 🕹️</h5>
+                            <span class="badge bg-dark fs-6">$200</span>
+                        </div>
+                        <div class="mb-3">
+                            <span class="badge badge-piso">Piso 3</span>
+                            <span class="badge badge-accesible"><i class="bi bi-person-wheelchair"></i> Ascensor</span>
+                        </div>
+
+                        <h6 class="fw-bold text-muted small text-uppercase">Setup Competitivo:</h6>
+                        <ul class="list-unstyled small feature-list mb-3">
+                            <li><i class="bi bi-playstation"></i> PS5 con 2 DualSense</li>
+                            <li><i class="bi bi-tv"></i> Monitor Curvo 144Hz 1ms</li>
+                            <li><i class="bi bi-headset"></i> Headset Astro A50</li>
+                            <li><i class="bi bi-keyboard"></i> Silla Gamer Ergonómica</li>
+                            <li><i class="bi bi-lightbulb"></i> Luces LED RGB Sincronizadas</li>
+                        </ul>
+                        
+                        <div class="accessibility-info p-2 rounded mb-3">
+                            <strong class="text-success"><i class="bi bi-check-circle-fill"></i> Gaming Inclusivo:</strong>
+                            <ul class="list-unstyled mb-0 ps-1">
+                                <li>• Escritorio de altura ajustable</li>
+                                <li>• Espacio libre para silla de ruedas</li>
+                            </ul>
+                        </div>
+
+                        <p class="text-success fw-bold small mb-0">✅ <span id="cant-ps5">--</span> disponibles</p>
+                    </div>
+                    <div class="card-footer bg-white border-0"><a href="/reservar?tipo=ps5" class="btn btn-outline-dark w-100 btn-reservar">Reservar</a></div>
+                </div>
+            </div>
+
+            <!-- 7. XBOX (Piso 2) -->
+            <div class="col room-card" data-piso="2" data-accesible="false">
+                <div class="card h-100 shadow border-0">
+                    <img src="/img/room-xbox.jpg" class="card-img-top" style="height: 220px; object-fit: cover;">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between mb-2">
+                            <h5 class="fw-bold">Xbox Lounge 💚</h5>
+                            <span class="badge bg-dark fs-6">$130</span>
+                        </div>
+                        <div class="mb-3">
+                            <span class="badge badge-piso">Piso 2</span>
+                        </div>
+
+                        <h6 class="fw-bold text-muted small text-uppercase">Zona Next-Gen:</h6>
+                        <ul class="list-unstyled small feature-list mb-3">
+                            <li><i class="bi bi-xbox"></i> Xbox Series X</li>
+                            <li><i class="bi bi-collection-play"></i> Game Pass Ultimate (300+ juegos)</li>
+                            <li><i class="bi bi-tv"></i> TV 65" 4K 120Hz</li>
+                            <li><i class="bi bi-armchair"></i> Sofá Reclinable de Cuero</li>
+                        </ul>
+
+                        <p class="text-success fw-bold small mb-0">✅ <span id="cant-xbox">--</span> disponibles</p>
+                    </div>
+                    <div class="card-footer bg-white border-0"><a href="/reservar?tipo=xbox" class="btn btn-outline-dark w-100 btn-reservar">Reservar</a></div>
+                </div>
+            </div>
+
+            <!-- 8. RETRO (Piso 4) -->
+            <div class="col room-card" data-piso="4" data-accesible="false">
+                <div class="card h-100 shadow border-0">
+                    <img src="/img/room-retro.jpg" class="card-img-top" style="height: 220px; object-fit: cover;">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between mb-2">
+                            <h5 class="fw-bold">Retro Arcade 👾</h5>
+                            <span class="badge bg-dark fs-6">$100</span>
+                        </div>
+                        <div class="mb-3">
+                            <span class="badge badge-piso">Piso 4</span>
+                        </div>
+
+                        <h6 class="fw-bold text-muted small text-uppercase">Viaje a los 80s:</h6>
+                        <ul class="list-unstyled small feature-list mb-3">
+                            <li><i class="bi bi-joystick"></i> Máquina Arcade (5000 juegos)</li>
+                            <li><i class="bi bi-cassette"></i> Decoración Neón y Posters Retro</li>
+                            <li><i class="bi bi-music-note-beamed"></i> Tocadiscos Bluetooth</li>
+                            <li><i class="bi bi-snow"></i> Mini-Refri Vintage</li>
+                        </ul>
+
+                        <p class="text-success fw-bold small mb-0">✅ <span id="cant-retro">--</span> disponibles</p>
+                    </div>
+                    <div class="card-footer bg-white border-0"><a href="/reservar?tipo=retro" class="btn btn-outline-dark w-100 btn-reservar">Reservar</a></div>
+                </div>
+            </div>
+
+        </div>
+        
+        <div id="noResults" class="text-center py-5 d-none">
+            <i class="bi bi-search display-1 text-muted"></i>
+            <h3 class="text-muted mt-3">No encontramos habitaciones con esos filtros.</h3>
+            <button class="btn btn-link" onclick="document.getElementById('btnReset').click()">Ver todas las habitaciones</button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-black text-white text-center py-4 border-top border-secondary">
+        <p class="mb-0 small">© 2024 Hotel Casanova. Todos los derechos reservados.</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- SCRIPT DE LÓGICA COMPLETA -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const btnConsultar = document.getElementById('btnConsultar');
+            const searchCheckin = document.getElementById('searchCheckin');
+            const searchCheckout = document.getElementById('searchCheckout');
+
+            // 1. FUNCIÓN PARA CARGAR DISPONIBILIDAD
+            function cargarDisponibilidad(checkin = '', checkout = '') {
+                // Construir URL con parámetros si existen
+                let url = '/api/disponibilidad';
+                if(checkin && checkout) url += `?checkin=${checkin}&checkout=${checkout}`;
+
+                fetch(url)
+                    .then(r => r.json())
+                    .then(data => {
+                        // Resetear contadores visuales a 0 primero
+                        document.querySelectorAll('[id^="cant-"]').forEach(el => el.innerText = '0');
+
+                        // Actualizar con datos reales
+                        data.forEach(item => {
+                            const ids = {
+                                'cinema': 'cant-cinema', 'switch': 'cant-switch', 'ps5': 'cant-ps5',
+                                'suite': 'cant-suite', 'familiar': 'cant-familiar', 'retro': 'cant-retro',
+                                'matrimonial': 'cant-matrimonial', 'xbox': 'cant-xbox'
+                            };
+                            if(ids[item.tipo]) {
+                                const el = document.getElementById(ids[item.tipo]);
+                                if(el) el.innerText = item.total;
+                            }
+                        });
+                    })
+                    .catch(err => console.error("Error disponibilidad:", err));
+            }
+
+            // 2. FUNCIÓN PARA ACTUALIZAR BOTONES DE RESERVA
+            function actualizarLinksReserva() {
+                const inDate = searchCheckin.value;
+                const outDate = searchCheckout.value;
+                const botones = document.querySelectorAll('.btn-reservar');
+
+                botones.forEach(btn => {
+                    // Obtener el tipo original del href (ej: /reservar?tipo=cinema)
+                    const url = new URL(btn.href, window.location.origin);
+                    
+                    // Agregar o actualizar parámetros de fecha
+                    if (inDate) url.searchParams.set('checkin', inDate);
+                    if (outDate) url.searchParams.set('checkout', outDate);
+                    
+                    btn.href = url.toString();
+                });
+            }
+
+            // 3. EVENTO CLIC EN CONSULTAR
+            btnConsultar.addEventListener('click', () => {
+                const inDate = searchCheckin.value;
+                const outDate = searchCheckout.value;
+
+                if(inDate && outDate) {
+                    if(inDate >= outDate) {
+                        alert("La fecha de salida debe ser posterior a la de llegada.");
+                        return;
+                    }
+                    cargarDisponibilidad(inDate, outDate);
+                    actualizarLinksReserva(); // ¡Esto pasa las fechas al botón!
+                } else {
+                    alert("Por favor selecciona ambas fechas.");
+                }
+            });
+
+            // Carga inicial (Disponibilidad de hoy)
+            cargarDisponibilidad();
+
+            // --- LÓGICA DE FILTROS VISUALES (PISO/ACCESIBILIDAD) ---
+            const filtroPiso = document.getElementById('filtroPiso');
+            const filtroAccesible = document.getElementById('filtroAccesible');
+            const btnReset = document.getElementById('btnReset');
+            const tarjetas = document.querySelectorAll('.room-card');
+            const noResults = document.getElementById('noResults');
+
+            function filtrar() {
+                const pisoSeleccionado = filtroPiso.value;
+                const soloAccesibles = filtroAccesible.checked;
+                let visibles = 0;
+
+                tarjetas.forEach(card => {
+                    const pisoCard = card.getAttribute('data-piso');
+                    const accesibleCard = card.getAttribute('data-accesible') === 'true';
+                    let mostrar = true;
+
+                    if (pisoSeleccionado !== 'todos' && pisoCard !== pisoSeleccionado) mostrar = false;
+                    if (soloAccesibles && !accesibleCard) mostrar = false;
+
+                    if (mostrar) {
+                        card.classList.remove('d-none');
+                        visibles++;
+                    } else {
+                        card.classList.add('d-none');
+                    }
+                });
+
+                if (visibles === 0) noResults.classList.remove('d-none');
+                else noResults.classList.add('d-none');
+            }
+
+            filtroPiso.addEventListener('change', filtrar);
+            filtroAccesible.addEventListener('change', filtrar);
+            btnReset.addEventListener('click', () => {
+                filtroPiso.value = 'todos';
+                filtroAccesible.checked = false;
+                filtrar();
+            });
+        });
+    </script>
+</body>
+</html>

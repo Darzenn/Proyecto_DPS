@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iniciar Sesión - Hotel Casanova</title>
+    <!-- Bootstrap para diseño rápido -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+</head>
+<body class="bg-dark d-flex align-items-center justify-content-center" style="height: 100vh; background-image: url('/img/fondo-gamer.jpg'); background-size: cover; background-position: center;">
+
+    <!-- Capa oscura para que el texto se lea mejor sobre la imagen -->
+    <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5);"></div>
+
+    <div class="card p-4 shadow-lg rounded-4 border-0" style="width: 100%; max-width: 400px; background: rgba(255, 255, 255, 0.95); position: relative; z-index: 2;">
+        <div class="text-center mb-4">
+            <h2 class="fw-bold text-uppercase">🏨 Hotel Casanova</h2>
+            <p class="text-muted">Accede para gestionar tus reservas</p>
+        </div>
+
+        <!-- FORMULARIO DE LOGIN -->
+        <!-- Envía los datos a /api/login con método POST -->
+        <form action="/api/login" method="POST">
+            
+            <!-- Mensaje de Error (Se activa si hay problemas) -->
+            <!-- En el futuro, si cambias la API para redirigir con ?error=1, este script lo mostrará -->
+            <div id="loginError" class="alert alert-danger d-none d-flex align-items-center" role="alert">
+                <i class="bi bi-exclamation-triangle-fill me-2"></i>
+                <div>Datos incorrectos</div>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label fw-bold"><i class="bi bi-envelope-fill"></i> Correo Electrónico</label>
+                <input type="email" name="email" class="form-control" placeholder="cliente@ejemplo.com" required>
+            </div>
+            
+            <div class="mb-4">
+                <label class="form-label fw-bold"><i class="bi bi-lock-fill"></i> Contraseña</label>
+                <input type="password" name="password" class="form-control" placeholder="******" required>
+            </div>
+            
+            <div class="d-grid gap-2">
+                <button type="submit" class="btn btn-warning fw-bold text-dark btn-lg shadow-sm">INGRESAR</button>
+            </div>
+        </form>
+
+        <div class="text-center mt-4 border-top pt-3">
+            <p class="small mb-1 text-muted">¿Aún no tienes cuenta?</p>
+            <a href="/registro" class="text-decoration-none fw-bold text-primary">Regístrate aquí</a>
+            <br><br>
+            <a href="/" class="text-muted small text-decoration-none hover-underline"><i class="bi bi-arrow-left"></i> Volver al inicio</a>
+        </div>
+    </div>
+
+    <!-- Script opcional para mostrar errores si vienen en la URL (ej: /login?error=true) -->
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        if (params.has('error')) {
+            document.getElementById('loginError').classList.remove('d-none');
+        }
+    </script>
+
+</body>
+</html>

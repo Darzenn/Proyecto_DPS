@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel Casanova - Experience & Gaming</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    
+    <style>
+        .hero-section {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('/img/fondo-gamer.jpg');
+            background-color: #1a1a1a; 
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 100px 0;
+        }
+        .card-img-top {
+            height: 220px;
+            object-fit: cover;
+            border-bottom: 3px solid #ffc107;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAV -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-black sticky-top border-bottom border-warning">
+        <div class="container">
+            <a class="navbar-brand fw-bold text-uppercase" href="/" style="letter-spacing: 2px;">
+                🏨 HOTEL CASANOVA
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item me-3">
+                        <span class="text-warning fw-bold"><i class="bi bi-whatsapp"></i> 960148827</span>
+                    </li>
+                    <li class="nav-item"><a href="/habitaciones" class="nav-link text-white">Ver Habitaciones</a></li>
+                    
+                    <!-- ÁREA DE USUARIO -->
+                    <li class="nav-item ms-2" id="caja-usuario">
+                        <a href="/login" class="btn btn-warning btn-sm fw-bold text-dark">Iniciar Sesión</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <header class="hero-section text-center">
+        <div class="container">
+            <h1 class="display-3 fw-bold mb-3 text-uppercase">Hotel Casanova</h1>
+            <p class="lead mb-4 fs-4">Donde el descanso se encuentra con la diversión.</p>
+            <p class="mb-4">PlayStation 5 • Nintendo Switch • Suites • Familiar</p>
+            
+            <!-- Buscador visual -->
+            <div class="card p-4 mx-auto shadow-lg border-0" style="max-width: 900px; color: black; border-radius: 15px;">
+                <form action="/habitaciones" method="GET" class="row g-3">
+                    <div class="col-md-3">
+                        <label class="form-label fw-bold small text-muted">LLEGADA</label>
+                        <input type="date" class="form-control" name="checkin">
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label fw-bold small text-muted">SALIDA</label>
+                        <input type="date" class="form-control" name="checkout">
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label fw-bold small text-muted">HUÉSPEDES</label>
+                        <select class="form-select" name="personas">
+                            <option value="2">2 Personas</option>
+                            <option value="4">4 Personas</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3 d-flex align-items-end">
+                        <button type="submit" class="btn btn-dark w-100 fw-bold py-2">BUSCAR</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </header>
+
+    <!-- HABITACIONES DESTACADAS -->
+    <section id="habitaciones" class="container py-5 bg-light rounded-4 my-5">
+        <div class="text-center mb-5">
+            <h2 class="fw-bold">Nuestras Favoritas</h2>
+            <p class="text-muted">Elige tu experiencia ideal</p>
+        </div>
+        
+        <div class="row row-cols-1 row-cols-md-3 g-4 mb-5">
+            
+            <!-- 1. CINEMA -->
+            <div class="col">
+                <div class="card h-100 shadow-sm border-0">
+                    <img src="/img/room-cinema.jpg" class="card-img-top" alt="Cinema">
+                    <div class="card-body">
+                        <h5 class="card-title fw-bold">Suite Cinema 🎬</h5>
+                        <p class="text-success fw-bold small mb-0">✅ <span id="cant-cinema">--</span> disponibles</p>
+                    </div>
+                    <div class="card-footer bg-white border-0 pb-3">
+                        <a href="/reservar?tipo=cinema" class="btn btn-outline-dark w-100">Reservar Ahora</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2. SWITCH -->
+            <div class="col">
+                <div class="card h-100 shadow-sm border-0">
+                    <img src="/img/room-switch.jpg" class="card-img-top" alt="Switch">
+                    <div class="card-body">
+                        <h5 class="card-title fw-bold">Room Switch 🎮</h5>
+                        <p class="text-success fw-bold small mb-0">✅ <span id="cant-switch">--</span> disponibles</p>
+                    </div>
+                    <div class="card-footer bg-white border-0 pb-3">
+                        <a href="/reservar?tipo=switch" class="btn btn-outline-dark w-100">Reservar Ahora</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3. PS5 -->
+            <div class="col">
+                <div class="card h-100 shadow-sm border-0">
+                    <img src="/img/room-ps5.jpg" class="card-img-top" alt="PS5">
+                    <div class="card-body">
+                        <h5 class="card-title fw-bold">Gamer Pro 🕹️</h5>
+                        <p class="text-danger fw-bold small mb-0">⚠️ <span id="cant-gamer">--</span> disponibles</p>
+                    </div>
+                    <div class="card-footer bg-white border-0 pb-3">
+                        <a href="/reservar?tipo=ps5" class="btn btn-dark w-100">Reservar Ahora</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 4. SUITE CASANOVA -->
+            <div class="col">
+                <div class="card h-100 shadow-sm border-0">
+                    <img src="/img/room-suite.jpg" class="card-img-top" alt="Suite">
+                    <div class="card-body">
+                        <h5 class="card-title fw-bold">Suite Casanova 🥂</h5>
+                        <p class="text-success fw-bold small mb-0">✅ <span id="cant-suite">--</span> disponibles</p>
+                    </div>
+                    <div class="card-footer bg-white border-0 pb-3">
+                        <a href="/reservar?tipo=suite" class="btn btn-dark w-100">Reservar Ahora</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 5. FAMILIAR -->
+            <div class="col">
+                <div class="card h-100 shadow-sm border-0">
+                    <img src="/img/room-familiar.jpg" class="card-img-top" alt="Familiar">
+                    <div class="card-body">
+                        <h5 class="card-title fw-bold">Familiar Deluxe 👨‍👩‍👧‍👦</h5>
+                        <p class="text-success fw-bold small mb-0">✅ <span id="cant-familiar">--</span> disponibles</p>
+                    </div>
+                    <div class="card-footer bg-white border-0 pb-3">
+                        <a href="/reservar?tipo=familiar" class="btn btn-outline-dark w-100">Reservar Ahora</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 6. RETRO -->
+            <div class="col">
+                <div class="card h-100 shadow-sm border-0">
+                    <img src="/img/room-retro.jpg" class="card-img-top" alt="Retro">
+                    <div class="card-body">
+                        <h5 class="card-title fw-bold">Retro Arcade 👾</h5>
+                        <p class="text-success fw-bold small mb-0">✅ <span id="cant-retro">--</span> disponibles</p>
+                    </div>
+                    <div class="card-footer bg-white border-0 pb-3">
+                        <a href="/reservar?tipo=retro" class="btn btn-outline-dark w-100">Reservar Ahora</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 7. MATRIMONIAL -->
+            <div class="col">
+                <div class="card h-100 shadow-sm border-0">
+                    <img src="/img/room-matrimonial.jpg" class="card-img-top" alt="Matrimonial">
+                    <div class="card-body">
+                        <h5 class="card-title fw-bold">Matrimonial ❤️</h5>
+                        <p class="text-success fw-bold small mb-0">✅ <span id="cant-matrimonial">--</span> disponibles</p>
+                    </div>
+                    <div class="card-footer bg-white border-0 pb-3">
+                        <a href="/reservar?tipo=matrimonial" class="btn btn-outline-dark w-100">Reservar Ahora</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 8. XBOX LOUNGE -->
+            <div class="col">
+                <div class="card h-100 shadow-sm border-0">
+                    <img src="/img/room-xbox.jpg" class="card-img-top" alt="Xbox">
+                    <div class="card-body">
+                        <h5 class="card-title fw-bold">Xbox Lounge 💚</h5>
+                        <p class="text-success fw-bold small mb-0">✅ <span id="cant-xbox">--</span> disponibles</p>
+                    </div>
+                    <div class="card-footer bg-white border-0 pb-3">
+                        <a href="/reservar?tipo=xbox" class="btn btn-outline-dark w-100">Reservar Ahora</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="text-center">
+            <a href="/habitaciones" class="btn btn-warning btn-lg fw-bold px-5 shadow">VER TODAS</a>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-black text-white text-center py-4">
+        <p class="mb-0 small">© 2024 Hotel Casanova.</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- SCRIPT DE SESIÓN Y DISPONIBILIDAD -->
+   <!-- ... (El resto de tu HTML sigue igual) ... -->
+
+    <!-- SCRIPT CORREGIDO -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            // 1. VERIFICAR SI HAY ALGUIEN CONECTADO
+            fetch('/api/usuario_actual')
+                .then(res => {
+                    if(res.ok) return res.json();
+                    throw new Error('No logueado');
+                })
+                .then(usuario => {
+                    const caja = document.getElementById('caja-usuario');
+                    caja.innerHTML = `
+                        <div class="dropdown">
+                            <button class="btn btn-outline-warning dropdown-toggle btn-sm" type="button" data-bs-toggle="dropdown">
+                                👤 ${usuario.nombre_completo.split(' ')[0]}
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-dark">
+                                <!-- 👇 AQUÍ ESTABA EL ERROR (Antes era #) 👇 -->
+                                <li><a class="dropdown-item" href="/perfil">Mi Perfil</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item text-danger" href="/logout">Cerrar Sesión</a></li>
+                            </ul>
+                        </div>
+                    `;
+                })
+                .catch(err => {
+                    console.log("Usuario no identificado");
+                });
+
+            // 2. CARGAR DISPONIBILIDAD
+            fetch('/api/disponibilidad')
+                .then(response => response.json())
+                .then(data => {
+                    data.forEach(item => {
+                        const ids = {
+                            'cinema': 'cant-cinema',
+                            'switch': 'cant-switch',
+                            'ps5': 'cant-gamer',
+                            'suite': 'cant-suite',
+                            'familiar': 'cant-familiar',
+                            'retro': 'cant-retro',
+                            'matrimonial': 'cant-matrimonial',
+                            'xbox': 'cant-xbox'
+                        };
+
+                        if(ids[item.tipo]) {
+                            const el = document.getElementById(ids[item.tipo]);
+                            if(el) el.textContent = item.total;
+                        }
+                    });
+                })
+                .catch(error => console.log('Esperando conexión...'));
+        });
+    </script>
+</body>
+</html>

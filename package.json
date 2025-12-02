@@ -13,11 +13,16 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "type": "commonjs",
   "bugs": {
     "url": "https://github.com/Darzenn/Proyecto_DPS/issues"
   },
   "homepage": "https://github.com/Darzenn/Proyecto_DPS#readme",
   "dependencies": {
-    "mysql": "^2.18.1"
+    "cors": "^2.8.5",
+    "express": "^5.1.0",
+    "express-session": "^1.18.2",
+    "mysql": "^2.18.1",
+    "mysql2": "^3.15.3"
   }
 }
